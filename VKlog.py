@@ -21,11 +21,14 @@ class VKlog(unittest.TestCase):
         password.send_keys(PASSWORD)
         password.send_keys(Keys.RETURN)
         driver.implicitly_wait(5)
-        print driver.find_element_by_id("myprofile")
-        assert u'Моя Страница' in driver.find_element_by_id("myprofile")
-        friends = driver.find_element_by_id("l_fr")
-        friends.click()
+        dialogs = driver.find_element_by_xpath("//li[@id='l_msg']/a/span[2]")
+        dialogs.click()
+        find_friend = driver.find_element_by_id("im_filter")
+        find_friend.send_keys(FRIEND_NAME)
+        find_friend.send_keys(Keys.RETURN)
+        sendtext = driver.find_element_by_xpath("//div[@id='page_wrap']/div/div")
+        sendtext.send_keys(TEXT)
+        sendtext.send_keys(Keys.RETURN)
         
-
 if __name__ == "__main__":
     unittest.main()
